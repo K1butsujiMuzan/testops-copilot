@@ -48,8 +48,8 @@ export default function CasesAside() {
               className={cn(
                 'text-2xl leading-7 border-b border-black dark:border-white',
                 {
-                 'bg-gray-500' : currentCaseId === element.id,
-                 'dark:bg-gray-900': currentCaseId !== element.id
+                 'bg-white dark:bg-gray-500' : currentCaseId === element.id,
+                 'bg-gray-200 dark:bg-gray-900': currentCaseId !== element.id
                 }
               )}
             >

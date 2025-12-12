@@ -1,9 +1,10 @@
-import ToggleArrow from "../../ui/ToggleArrow/ToggleArrow.tsx";
-import { useCurrentCase, useUpdateCase } from "../../store/useCasesStore.ts";
-import { useState, useEffect } from "react";
-import MainInput from "../../ui/MainInput/MainInput.tsx";
-import Slider from "../../ui/Slider/Slider.tsx";
-import Checkbox from "../../ui/Checkbox/Checkbox.tsx";
+import ToggleArrow from "../../ui/ToggleArrow/ToggleArrow.tsx"
+import { useCurrentCase, useUpdateCase } from "../../store/useCasesStore.ts"
+import { useState, useEffect } from "react"
+import MainInput from "../../ui/MainInput/MainInput.tsx"
+import Slider from "../../ui/Slider/Slider.tsx"
+import Checkbox from "../../ui/Checkbox/Checkbox.tsx"
+import { inputs } from "./metadata.data.ts"
 
 export default function MetadataAside() {
   const currentCase = useCurrentCase()
@@ -78,60 +79,21 @@ export default function MetadataAside() {
       </div>
       <div className={'flex flex-col flex-1 gap-8 pb-8'}>
         <div>
-          <MainInput
-            id={'title'}
-            label={'Title'}
-            placeholder={'Введите название...'}
-            value={formData.title}
-            onChange={(value) => handleInputChange('title', value)}
-          />
-          <MainInput
-            id={'label'}
-            label={'Label'}
-            placeholder={'Введите владельца...'}
-            value={formData.label}
-            onChange={(value) => handleInputChange('label', value)}
-          />
-          <MainInput
-            id={'feature'}
-            label={'Feature'}
-            placeholder={'Введите особенности...'}
-            value={formData.feature}
-            onChange={(value) => handleInputChange('feature', value)}
-          />
-          <MainInput
-            id={'story'}
-            label={'Story'}
-            placeholder={'Введите сценарий...'}
-            value={formData.story}
-            onChange={(value) => handleInputChange('story', value)}
-          />
-          <MainInput
-            id={'link'}
-            label={'Link'}
-            placeholder={'Введите ссылку на внешнюю систему...'}
-            value={formData.link}
-            onChange={(value) => handleInputChange('link', value)}
-          />
-          <MainInput
-            id={'priority'}
-            label={'Priority'}
-            placeholder={'Введите приоритет...'}
-            value={formData.priority}
-            onChange={(value) => handleInputChange('priority', value)}
-          />
-          <MainInput
-            id={'tags'}
-            label={'Tags'}
-            placeholder={'Введите теги (через запятую)...'}
-            value={formData.tags}
-            onChange={(value) => handleInputChange('tags', value)}
-          />
+          {inputs.map(input => (
+            <MainInput 
+              key={input.id}
+              id={input.id}
+              label={input.label}
+              placeholder={input.placeholder}
+              value={formData[input.id]}
+              onChange={(value) => handleInputChange(input.id, value)}
+            />
+          ))}
         </div>
         <textarea
           name="text"
           id="text"
-          className={'bg-gray-500 text-base leading-5 font-normal outline-none py-1.5 px-4 rounded-3xl flex-1 mx-7 resize-none'}
+          className={'bg-gray-300 dark:bg-gray-500 text-base leading-5 font-normal outline-none py-1.5 px-4 rounded-3xl flex-1 mx-7 resize-none'}
           placeholder={'Опишите что протестировать'}
           value={formData.content}
           onChange={(e) => handleInputChange('content', e.target.value)}

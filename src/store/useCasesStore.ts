@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from "zustand"
 import { type StateCreator } from 'zustand'
 
 export interface ICase {
@@ -23,12 +23,14 @@ export type TTestType = 'UiTest' | 'ApiTest'
 interface ICases {
   cases: ICase[]
   currentCaseId: string
+  isLoading: boolean
 }
 
 interface ICasesMethods {
   addCase: () => void
   setCurrentCase: (id: string) => void
   updateCase: (id: string, updates: Partial<ICase>) => void
+  setIsLoading: (isLoading: boolean) => void
 }
 
 interface ICasesStore extends ICasesMethods, ICases {}
@@ -51,6 +53,10 @@ const initialCase: ICase = {
 const casesStore: StateCreator<ICasesStore> = (set, get) => ({
   cases: [initialCase],
   currentCaseId: initialCase.id,
+  isLoading: false,
+  setIsLoading: (isLoading: boolean) => {
+    set({ isLoading })
+  },
 
   addCase: () => {
     const newCase: ICase = {
@@ -87,7 +93,7 @@ const casesStore: StateCreator<ICasesStore> = (set, get) => ({
   }
 })
 
-export const useCasesStore = create<ICasesStore>()(casesStore);
+export const useCasesStore = create<ICasesStore>()(casesStore)
 
 export const useCases = () => useCasesStore(state => state.cases)
 export const useCurrentCaseId = () => useCasesStore(state => state.currentCaseId)
@@ -99,3 +105,5 @@ export const useCurrentCase = () => {
 export const useAddCase = () => useCasesStore(state => state.addCase)
 export const useSetCurrentCase = () => useCasesStore(state => state.setCurrentCase)
 export const useUpdateCase = () => useCasesStore(state => state.updateCase)
+export const useSetIsLoading = () => useCasesStore(state => state.setIsLoading)
+export const useIsLoading = () => useCasesStore(state => state.isLoading)
