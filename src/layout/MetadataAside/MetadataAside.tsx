@@ -68,7 +68,7 @@ export default function MetadataAside() {
   }
 
   return (
-    <aside className={'bg-gray-200 flex flex-col dark:bg-gray-900 border-l w-150 border-black dark:border-white text-black dark:text-white'}>
+    <aside className={'absolute right-0 top-0 bottom-0 w-1/2 xl:static z-20 bg-gray-200 flex flex-col dark:bg-gray-900 border-l xl:w-150 border-black dark:border-white text-black dark:text-white'}>
       <div className={'py-3.5 border-b border-black dark:border-white px-8 flex justify-between items-center font-extrabold'}>
         <ToggleArrow isLeft={false} onButtonClick={() => setIsOpen(false)} />
         <span className={'text-green-300 text-32 leading-9.5'}>Метаданные</span>

@@ -28,7 +28,7 @@ export default function CasesAside() {
   }
 
   return(
-    <aside className={'bg-gray-200 flex flex-col relative dark:bg-gray-900 font-extrabold border-r w-105 border-black dark:border-white text-black dark:text-white'}>
+    <aside className={'bg-gray-200 flex flex-col z-20 w-1/2 top-0 bottom-0 absolute xl:relative dark:bg-gray-900 font-extrabold border-r xl:w-105 border-black dark:border-white text-black dark:text-white'}>
       <div className={'py-3.5 border-b border-black dark:border-white px-8 flex justify-between items-center'}>
         <span className={'text-green-300 text-32 leading-9.5'}>Список кейсов</span>
         <ToggleArrow isLeft={true} onButtonClick={() => setIsOpen(false)} />
