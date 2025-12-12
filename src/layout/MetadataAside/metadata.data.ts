@@ -1,5 +1,5 @@
 interface IInputData {
-    id: string
+    id: 'link' | 'title' | 'label' | 'feature' | 'story' | 'priority' | 'tags'
     label: string
     placeholder: string
 }
